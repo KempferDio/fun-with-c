@@ -14,10 +14,10 @@ typedef struct stack {
     int counter;
 } stack;
 
-stack* init_stack();
-void push(stack *_stack, int value);
-int peek(stack *_stack);
-int pop(stack *_stack);
-void print_stack(stack *_stack);
+stack* stack_init();
+void stack_push(stack *_stack, int value);
+int stack_peek(stack *_stack);
+int stack_pop(stack *_stack);
+void stack_print(stack *_stack);
 
 #endif // STACK_H

@@ -1,12 +1,17 @@
 #include "stack.h"
 
 
-stack* init_stack() {
+stack* stack_init() {
     stack *temp = malloc(sizeof(stack));
     temp->counter = 0;
 }
 
-void push(stack *_stack, int value) {
+void stack_push(stack *_stack, int value) {
+    if(_stack == NULL) {
+        printf("ERROR::STACK_IS_NULL");
+        return;
+    }
+
     if(_stack->counter >= MAX_STACK_SIZE) {
         printf("Stack is full\n");
         return;
@@ -16,19 +21,34 @@ void push(stack *_stack, int value) {
     printf("Success pushing\n");
 }
 
-int peek(stack *_stack) {
+int stack_peek(stack *_stack) {
+    if(_stack == NULL) {
+        printf("ERROR::STACK_IS_NULL");
+        return -1;
+    }
+
     return _stack->data[_stack->counter];
 }
 
-int pop(stack *_stack) {
+int stack_pop(stack *_stack) {
+    if(_stack == NULL) {
+        printf("ERROR::STACK_IS_NULL");
+        return -1;
+    }
+
     int temp;
     temp = _stack->data[_stack->counter];
     _stack->counter = _stack->counter - 1;
     return temp;
 }
 
-void print_stack(stack *_stack) {
-    for(int i = 0; i <= _stack->counter - 1; i++) {
+void stack_print(stack *_stack) {
+    if(_stack == NULL) {
+        printf("ERROR::STACK_IS_NULL");
+        return;
+    }
+
+    for(int i = _stack->counter - 1; i >= 0; i--) {
         printf("Element number %d is %d\n", i, _stack->data[i]);
     }
 }
