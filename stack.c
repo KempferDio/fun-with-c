@@ -1,50 +1,34 @@
 #include "stack.h"
 
+
 stack* init_stack() {
-    stack *newStack = malloc(sizeof(stack));
-    newStack->data = 0;
-    newStack->next = NULL;
-    return newStack;
-}
-
-int pop(stack *_stack) {
-    stack *current;
-    current = _stack;
-    int data = 0;
-
-    while(current->next->next != NULL) {
-        current = current->next;
-        printf("Popping...");
-    }
-    data = current->data;
-    printf("Pop data: %d\n", data);
-    free(current->next);
-    current->next = NULL;
-    return data;
+    stack *temp = malloc(sizeof(stack));
+    temp->counter = 0;
 }
 
 void push(stack *_stack, int value) {
-    stack *current;
-    current = _stack;
-
-    while(current->next != NULL) {
-        current = current->next;
-        printf("Pushing...");
+    if(_stack->counter >= MAX_STACK_SIZE) {
+        printf("Stack is full\n");
+        return;
     }
-
-    current->data = value;
-    current->next = malloc(sizeof(stack));
-    current->next->next = NULL;
-    printf("Pushing complete\n");   
+    _stack->data[_stack->counter] = value;
+    _stack->counter++;
+    printf("Success pushing\n");
 }
 
 int peek(stack *_stack) {
-    stack *current;
-    current = _stack;
-    while(current->next->next != NULL) {
-        current = current->next;
-        printf("Peeking... ");
+    return _stack->data[_stack->counter];
+}
+
+int pop(stack *_stack) {
+    int temp;
+    temp = _stack->data[_stack->counter];
+    _stack->counter = _stack->counter - 1;
+    return temp;
+}
+
+void print_stack(stack *_stack) {
+    for(int i = 0; i <= _stack->counter - 1; i++) {
+        printf("Element number %d is %d\n", i, _stack->data[i]);
     }
-    printf("Peek complete: %d\n", current->data);
-    return current->data;
 }
