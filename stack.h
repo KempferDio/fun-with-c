@@ -1,5 +1,5 @@
 /*
-    Something like stack with list structure
+    Something like stack with list properties
     Without max size. It's allocating memory everytime when an object
     is pushed onto stack 
 */
