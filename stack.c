@@ -1,8 +1,10 @@
 #include "stack.h"
 
 
-stack* stack_init() {
-    stack *temp = malloc(sizeof(stack));
+stack* stack_init(int size) {
+    stack *temp;
+    temp->size = size;
+    temp->data = malloc(temp->size * sizeof(int));
     temp->counter = 0;
 }
 
@@ -12,7 +14,7 @@ void stack_push(stack *_stack, int value) {
         return;
     }
 
-    if(_stack->counter >= MAX_STACK_SIZE) {
+    if(_stack->counter >= _stack->size) {
         printf("Stack is full\n");
         return;
     }
