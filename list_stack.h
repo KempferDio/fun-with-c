@@ -15,8 +15,8 @@ typedef struct list_stack {
 } list_stack;
 
 list_stack* init_stack();
-int pop(list_stack *_stack);              //Returns top value and delete it from the stack
+int pop(list_stack *_stack);      //Returns top value and delete it from the stack
 void push(list_stack *_stack, int value); //Pushes value in the top of stack
-int peek(list_stack *_stack);             //Returs top value from the stack
+int peek(list_stack *_stack);     //Returs top value from the stack
 
 #endif // LIST_STACK_H
